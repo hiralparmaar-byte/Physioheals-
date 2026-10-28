@@ -3,9 +3,11 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
 import { ServicesSection } from './components/ServicesSection';
+import { BodyMapNavigator } from './components/BodyMapNavigator';
 import { ErgonomicEvaluator } from './components/ErgonomicEvaluator';
 import { MicroBreakRoutine } from './components/MicroBreakRoutine';
 import { CorporateRoiCalculator } from './components/CorporateRoiCalculator';
+import { CorporatePackages } from './components/CorporatePackages';
 import { AboutFounder } from './components/AboutFounder';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { FaqSection } from './components/FaqSection';
@@ -39,36 +41,44 @@ export default function App() {
       {/* Top Bar Contract Header */}
       <Navbar onOpenBooking={() => setBookingModalOpen(true)} />
 
-      {/* Main Content */}
+      {/* Main Content Flow */}
       <main className="flex-1">
-        {/* Hero Section with 4-Column Proof Strip */}
+        {/* 1. Hero Section with 4-Column Proof Strip */}
         <Hero
           onOpenBooking={() => setBookingModalOpen(true)}
           onExploreCases={scrollToCases}
         />
 
-        {/* Clinical Case Studies Section (Highlighted #cases Anchor) */}
+        {/* 2. Clinical Case Studies Section (Highlighted #cases Anchor) */}
         <CaseStudiesSection onOpenBooking={() => setBookingModalOpen(true)} />
 
-        {/* Specialized Services with Editorial Numbering */}
+        {/* 3. Specialized Services with Editorial Numbering */}
         <ServicesSection onOpenBooking={() => setBookingModalOpen(true)} />
 
-        {/* Interactive Diagnostic Tool: Postural & Ergonomic Evaluator */}
+        {/* 4. Anatomical Symptom & Ergonomic Culprit Map */}
+        <div id="symptoms">
+          <BodyMapNavigator onOpenBooking={() => setBookingModalOpen(true)} />
+        </div>
+
+        {/* 5. Interactive Diagnostic Tool: Postural & Ergonomic Evaluator */}
         <ErgonomicEvaluator onOpenBooking={() => setBookingModalOpen(true)} />
 
-        {/* Interactive Tool: 3-Minute Desk Mobility & Nerve Reset Sequencer */}
+        {/* 6. Interactive Tool: 3-Minute Desk Mobility & Nerve Reset Sequencer */}
         <MicroBreakRoutine />
 
-        {/* Corporate ROI & Strain Calculator for HR & Enterprise Leaders */}
+        {/* 7. Corporate ROI & Strain Calculator for HR & Enterprise Leaders */}
         <CorporateRoiCalculator onOpenBooking={() => setBookingModalOpen(true)} />
 
-        {/* Lead Physiotherapist & Ergonomist Profile: Dr. Hiral Parmar */}
+        {/* 8. Corporate B2B Ergonomic Packages & Masterclass Tiers */}
+        <CorporatePackages onOpenBooking={() => setBookingModalOpen(true)} />
+
+        {/* 9. Lead Physiotherapist & Ergonomist Profile: Dr. Hiral Parmar */}
         <AboutFounder onOpenBooking={() => setBookingModalOpen(true)} />
 
-        {/* Attributable Quantitative Proof & Testimonials */}
+        {/* 10. Attributable Quantitative Proof & Testimonials */}
         <TestimonialsSection />
 
-        {/* Frequently Asked Questions */}
+        {/* 11. Frequently Asked Questions */}
         <FaqSection />
       </main>
 

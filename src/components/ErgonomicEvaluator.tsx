@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ShieldAlert, ArrowRight, RefreshCw, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { ShieldAlert, ArrowRight, RefreshCw, CheckCircle2, AlertTriangle, FileText } from 'lucide-react';
+import { ErgonomicReportModal } from './ErgonomicReportModal';
 
 interface ErgonomicEvaluatorProps {
   onOpenBooking: () => void;
@@ -14,6 +15,22 @@ export const ErgonomicEvaluator: React.FC<ErgonomicEvaluatorProps> = ({ onOpenBo
     'neck-shoulders',
     'lower-back',
   ]);
+
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+
+  const screenHoursOptions = ['< 4 Hours', '4–7 Hours', '8–10 Hours', '11+ Hours'];
+  const monitorPosOptions = ['Eye Level (Stand / Arm)', 'Looking Down at Laptop', 'Offset Multi-Monitors'];
+  const chairTypeOptions = ['Ergonomic Task Chair (Adjustable)', 'Basic Office Swivel Chair', 'Dining Chair / Sofa / Bed'];
+  const feetSupportOptions = ['Flat on Floor / Footrest', 'Dangling / Tucked Under Chair', 'Crossed Legs / Sitting on Foot'];
+
+  const symptomLabels: Record<string, string> = {
+    'neck-shoulders': 'Neck & Trapezius Tightness',
+    headaches: 'Tension / Occipital Headaches',
+    'lower-back': 'Lower Back / Coccyx Aching',
+    'wrist-forearm': 'Wrist / Thumb / RSI Tingling',
+    'pelvic-si': 'Pelvic Girdle / SI Joint Discomfort',
+    'posture-slump': '3 PM Fatigue & Slouching',
+  };
 
   const toggleSymptom = (key: string) => {
     if (symptoms.includes(key)) {
@@ -305,11 +322,16 @@ export const ErgonomicEvaluator: React.FC<ErgonomicEvaluatorProps> = ({ onOpenBo
               </div>
             </div>
 
-            {/* Action Box */}
-            <div className="mt-8 pt-6 border-t border-neutral-200">
-              <div className="text-xs text-neutral-500 mb-3">
-                Need an exhaustive 32-point workstation audit or individual physical therapy plan?
-              </div>
+            {/* Action Buttons */}
+            <div className="mt-8 pt-6 border-t border-neutral-200 space-y-3">
+              <button
+                onClick={() => setReportModalOpen(true)}
+                className="w-full py-2.5 px-3 text-xs font-semibold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5 text-neutral-600" />
+                <span>View &amp; Print Clinical Action Plan</span>
+              </button>
+
               <button
                 onClick={onOpenBooking}
                 className="w-full py-3 px-4 text-xs font-semibold text-white bg-teal-900 hover:bg-teal-800 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
@@ -321,6 +343,21 @@ export const ErgonomicEvaluator: React.FC<ErgonomicEvaluatorProps> = ({ onOpenBo
           </div>
         </div>
       </div>
+
+      {/* Printable Clinical Action Plan Modal */}
+      <ErgonomicReportModal
+        isOpen={reportModalOpen}
+        onClose={() => setReportModalOpen(false)}
+        riskScore={riskScore}
+        riskTier={currentTier}
+        recommendations={recommendations}
+        screenHoursLabel={screenHoursOptions[screenHours]}
+        monitorPosLabel={monitorPosOptions[monitorPos]}
+        chairTypeLabel={chairTypeOptions[chairType]}
+        feetSupportLabel={feetSupportOptions[feetSupport]}
+        symptomsList={symptoms.map((k) => symptomLabels[k] || k)}
+        onOpenBooking={onOpenBooking}
+      />
     </section>
   );
 };

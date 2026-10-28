@@ -22,19 +22,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           <span className="font-display">PhysioHeals</span>
         </a>
 
-        {/* Zone 2: 4-5 single-line clean text navigation links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-neutral-600">
+        {/* Zone 2: 4–5 clean single-line text navigation links */}
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-600">
           <a
             href="#services"
             className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
           >
             Services
-          </a>
-          <a
-            href="#ergonomics"
-            className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
-          >
-            Ergonomics
           </a>
           <a
             href="#cases"
@@ -43,22 +37,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             Clinical Cases
           </a>
           <a
+            href="#symptoms"
+            className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
+          >
+            Symptom Map
+          </a>
+          <a
             href="#assessment"
             className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
           >
-            Posture Risk Test
+            Posture Test
+          </a>
+          <a
+            href="#packages"
+            className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
+          >
+            Corporate Tiers
           </a>
           <a
             href="#about"
             className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
           >
-            About Dr. Parmar
-          </a>
-          <a
-            href="#faq"
-            className="hover:text-neutral-900 transition-colors whitespace-nowrap shrink-0"
-          >
-            FAQ
+            About
           </a>
         </nav>
 
@@ -103,18 +103,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               Services
             </a>
             <a
-              href="#ergonomics"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1.5 hover:text-teal-800"
-            >
-              Workstation Ergonomics
-            </a>
-            <a
               href="#cases"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1.5 font-semibold text-teal-900"
             >
               Clinical Case Studies (#cases)
+            </a>
+            <a
+              href="#symptoms"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1.5 hover:text-teal-800"
+            >
+              Biomechanical Symptom Map
             </a>
             <a
               href="#assessment"
@@ -129,6 +129,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               className="py-1.5 hover:text-teal-800"
             >
               Desk Mobility Routine
+            </a>
+            <a
+              href="#packages"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1.5 hover:text-teal-800"
+            >
+              Corporate B2B Packages
             </a>
             <a
               href="#about"
